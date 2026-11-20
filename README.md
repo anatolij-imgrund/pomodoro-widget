@@ -70,6 +70,37 @@ Die Installationsdateien landen danach in `src-tauri/target/release/bundle/` (un
 | `npm run lint` | Code mit ESLint prüfen (`npm run lint:fix` repariert, was automatisch geht) |
 | `npm run typecheck` | TypeScript-Typen prüfen |
 | `npx tauri icon app-icon.png` | App-Icons in allen Größen neu erzeugen |
+| `npm run msix:test` / `npm run msix` | MSIX-Paket lokal testen / für den Store bauen (siehe unten) |
+
+## Microsoft Store
+
+Für den Store wird die App als **MSIX-Paket** gebaut. Das ist kostenlos: Microsoft signiert MSIX-Pakete nach der Prüfung selbst, man braucht kein eigenes Code-Signing-Zertifikat. Tauri kann MSIX nicht selbst erzeugen, deshalb gibt es dafür ein eigenes Skript.
+
+Zusätzlich nötig: das [Windows SDK](https://developer.microsoft.com/windows/downloads/windows-sdk/) (für `makeappx.exe`), z. B. per `winget install Microsoft.WindowsSDK.10.0.26100`.
+
+### Lokal ausprobieren
+
+In Windows den Entwicklermodus einschalten (Einstellungen › System › Für Entwickler), dann:
+
+```powershell
+npm run msix:test
+```
+
+Das baut die App, installiert sie als Paket und legt sie ins Startmenü. Wieder entfernen mit `Get-AppxPackage -Name 'PomodoroWidget.LokalerTest' | Remove-AppxPackage`.
+
+### Paket für den Store bauen
+
+1. In [Partner Center](https://partner.microsoft.com/dashboard) eine neue **MSIX or PWA app** anlegen und den Namen reservieren.
+2. Unter *Produktverwaltung › Produktidentität* die Werte für `Package/Identity/Name`, `Package/Identity/Publisher` und `Package/Properties/PublisherDisplayName` in `msix/identity.json` eintragen. `DisplayName` muss dem reservierten Namen entsprechen.
+3. Paket bauen:
+
+   ```powershell
+   npm run msix
+   ```
+
+4. Die Datei `msix-out/PomodoroWidget_<version>_x64.msix` in Partner Center hochladen. Texte für den Store-Eintrag stehen in [`msix/STORE.md`](msix/STORE.md).
+
+Für ein Update die Version in `src-tauri/tauri.conf.json` erhöhen und das Paket neu bauen.
 
 ## Projektstruktur
 
@@ -83,6 +114,8 @@ src-tauri/
   tauri.conf.json   Fenster-Einstellungen (Größe, transparent, immer oben …)
   capabilities/     Was das Frontend in Tauri darf
   icons/            App-Icons und Button-Grafiken
+msix/               MSIX-Vorlage, Store-Icons und Store-Texte
+scripts/            build-msix.ps1 für das Store-Paket
 app-icon.svg        Tomaten-Icon als Vektorgrafik (Vorlage)
 app-icon.png        Ausgangsbild für die App-Icons (1024 px)
 ```

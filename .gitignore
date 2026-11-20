@@ -41,3 +41,6 @@ bun.lockb
 
 # Windows
 Thumbs.db
+
+# MSIX-Build (scripts/build-msix.ps1)
+/msix-out/

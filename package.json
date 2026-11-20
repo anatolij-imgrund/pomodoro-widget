@@ -13,7 +13,9 @@
 		"tauri": "tauri",
 		"typecheck": "tsc --noEmit",
 		"lint": "eslint",
-		"lint:fix": "eslint --fix"
+		"lint:fix": "eslint --fix",
+		"msix": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build-msix.ps1",
+		"msix:test": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build-msix.ps1 -Test"
 	},
 	"dependencies": {
 		"@heroui/react": "3.1.0",
