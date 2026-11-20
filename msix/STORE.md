@@ -51,8 +51,21 @@ Pomodoro, Timer, Fokus, Konzentration, Produktivität, Widget, Tomate
 | Datenschutzrichtlinie (URL) | https://github.com/anatolij-imgrund/pomodoro-widget/blob/main/PRIVACY.md |
 | Website | https://github.com/anatolij-imgrund/pomodoro-widget |
 | Support-Kontakt | https://github.com/anatolij-imgrund/pomodoro-widget/issues |
-| Screenshot | `msix/store-screenshot-1.png` (1920 × 1080) |
+| Screenshots | `msix/store-screenshot-1.png` bis `-6.png` (je 1920 × 1080), Reihenfolge und Beschriftungen siehe unten |
 | Store-Logo | `app-icon.png` (1024 × 1024) |
+
+## Screenshots und Bildbeschriftungen
+
+In dieser Reihenfolge hochladen. Die Beschriftung kommt unter „Bildbeschriftung hinzufügen“.
+
+| Datei | Bildbeschriftung |
+| --- | --- |
+| `store-screenshot-1.png` | Schwebender Pomodoro-Timer, immer im Vordergrund |
+| `store-screenshot-2.png` | Start, Pause und Reset mit einem Klick |
+| `store-screenshot-3.png` | Schnellauswahl: 5, 10, 15, 30 oder 60 Minuten |
+| `store-screenshot-4.png` | Deckkraft per Mausrad einstellen |
+| `store-screenshot-5.png` | Festpinnen und im Infobereich verstecken |
+| `store-screenshot-6.png` | Sanfter Alarm mit ruhiger Melodie |
 
 ## Begründung für „runFullTrust“
 
